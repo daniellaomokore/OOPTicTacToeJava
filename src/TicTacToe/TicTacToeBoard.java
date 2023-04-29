@@ -10,9 +10,13 @@ public class  TicTacToeBoard  extends GameBoard {
     */
      @Override
     protected char[][] createGameBoard() {
+         /**
+          This method creates a 3x3 char array representing the game board and initializes all its elements to the default value (which is ' ').
+          It does so by iterating through each row and column of the array and setting each element to the 'defaultGameValue' variable.
+          @return the created 3x3 char array representing the game board
+          */
 
-
-         createdBoard = new char[3][3];   // create the board to have 3 rows & 3 columns
+        createdBoard = new char[3][3];   // create the board to have 3 rows & 3 columns
 
         for(int row=0; row<3; row++){  // for each row - it gets repeated 3 times
             for(int col=0; col<3; col++){  // for each column - it gets repeated 3 times
@@ -26,6 +30,13 @@ public class  TicTacToeBoard  extends GameBoard {
 
     @Override
     protected void resetGameBoard() {
+        /**
+         * Resets the game board to its default state with all positions empty.
+         *
+         * This method iterates over each cell of the game board and sets its value to the default game value,
+         * to indicate that the cell is empty and available for a move.
+         *
+         */
         for(int row=0; row<3; row++){
             for(int col=0; col<3; col++){
                 createdBoard[row][col] = defaultGameValue;
@@ -34,11 +45,23 @@ public class  TicTacToeBoard  extends GameBoard {
     }
 
     public boolean placeMarker(int row, int col, char marker) {
+        /**
+         * Places a marker on the game board at the specified row and column.
+         *
+         * @param row    the row to place the marker in
+         * @param col    the column to place the marker in
+         * @param marker the marker to place on the board ('X' or 'O')
+         * @return true if the marker was successfully placed, false otherwise
+         */
         createdBoard[row][col] = marker;
         return true;
     }
 
     public char isThereAWinner() {
+        /**
+        Determines if there is a winner on the current game board by checking each row, column, and diagonal for matching markers.
+        @return The marker of the winning player ('X' or 'O'), or 'N' if there is no winner.
+        */
         // Check rows
         for (int row = 0; row < 3; row++) {
             if (createdBoard[row][0] != ' ' && createdBoard[row][0] == (createdBoard[row][1]) && createdBoard[row][1] == (createdBoard[row][2])) {
@@ -62,7 +85,7 @@ public class  TicTacToeBoard  extends GameBoard {
         return 'N';
     }
 
-    /* THIS IS THE ALTERNATIVE WAY TO IMPLEMENT THE ABOVE FUNCTION
+    /* THIS IS THE ALTERNATIVE WAY TO IMPLEMENT THE CREATEGAMEBOARD METHOD
     @Override
     protected char[][] createGameBoard() {
         int numCols = 3;

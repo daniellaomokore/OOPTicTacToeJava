@@ -16,6 +16,12 @@ public class TicTacToeGame {
 
 
     public TicTacToeGame(String player1Name, char player1Marker, String player2Name, char player2Marker){
+        /**
+         * Constructs a new TicTacToeGame object with the given player names and markers.
+         * Initializes the game board with a new instance of TicTacToeBoard, and initializes
+         * player1 and player2 with new instances of User with the inputted names and markers.
+         * Sets the current player to player1.
+         */
         this.myTicTacToeBoard = new TicTacToeBoard(); // initialize myTicTacToeBoard with a new instance of TicTacToeBoard
         this.player1 = new User(player1Name, player1Marker); // initialize player1 with a new instance of User with inputted name and marker
         this.player2 = new User(player2Name, player2Marker); // initialize player2 with a new instance of User with inputted name and marker
@@ -23,6 +29,11 @@ public class TicTacToeGame {
     }
 
     public static TicTacToeGame gameSetUp(){
+        /**
+         * Prompts the user to enter the name and marker of two players, and creates a new TicTacToeGame object with the given player information.
+         *
+         * @return a TicTacToeGame object with the player information entered by the user.
+         */
         Scanner input = new Scanner(System.in);
 
         System.out.println("Player 1 enter your name:");
@@ -75,6 +86,12 @@ public class TicTacToeGame {
     3. () = no input arguments.
     */
     public void playGame() {
+        /**
+         * This method allows players to play a game of Tic Tac Toe until a winner is found or the game is tied. It prompts each
+         * player to make a move and displays the game board after each move. Once the game is over, it determines the winner
+         * and displays their name. It also prompts the user to play again or exit the program.
+         */
+
         while (!isGameOver()) {
             makeMove();
             myTicTacToeBoard.displayGameBoard();
@@ -114,11 +131,19 @@ public class TicTacToeGame {
 
 
     public User getCurrentPlayer(){
+        /**
+         * Returns the current player who is playing the game.
+         *
+         * @return The current player object.
+         */
         return currentPlayer;
         }
 
     //Method to switch to the next player
     public void switchPlayer(){
+        /**
+         * Switches the current player to the other player.
+         */
         if(getCurrentPlayer()==player1){
             this.currentPlayer=player2;
         }
@@ -127,8 +152,13 @@ public class TicTacToeGame {
         }
     }
 
-    //Method makeMove to plot the current players marker in a location based on row and col num
     public String makeMove() {
+        /**
+         * Prompts the current player to select a location on the game board to place their marker.
+         * Returns a message indicating whether the move was successful.
+         *
+         * @return A string message indicating whether the move was successful.
+         */
         int row, col;
 
         while (true) {
@@ -153,6 +183,11 @@ public class TicTacToeGame {
 
     //Method to check if board is full/is game over -this is called from another func
     public boolean isGameOver(){
+        /**
+         * Checks if the TicTacToe game is over by verifying if the board is full or if there is a winner.
+         *
+         * @return true if the game is over, false otherwise
+         */
         if (myTicTacToeBoard.boardisfull() || myTicTacToeBoard.isThereAWinner() !='N'){
             return true;
         }

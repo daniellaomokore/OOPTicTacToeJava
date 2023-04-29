@@ -3,13 +3,18 @@ package TicTacToe;
 
 // abstract class
 
-public abstract class GameBoard {
+public abstract class GameBoard implements Board {
     char defaultGameValue = ' ';
     char[][] createdBoard;   // initialise variable for the gameBoard 2D Array
 
-    // Constructor method - when we initialise an object of the class we create the board
+
     public GameBoard() {
-        createGameBoard(); // create game board when an object initialised
+        /**
+         This is a constructor method for the GameBoard class.
+         It is called when an object of the class is initialized and creates the game board.
+         It calls the abstract method createGameBoard() to create the game board.
+         */
+        createGameBoard();
 
     }
 
@@ -19,7 +24,13 @@ public abstract class GameBoard {
     3. 'char[][]' = it has a 2d array return type with characters.
     4. () = no input arguments.
     */
+    /**
+     Abstract method to create the game board as a 2D char array.
+     @return a 2D char array representing the game board
+     */
     abstract protected char[][] createGameBoard();
+
+
 
 
     /*
@@ -28,10 +39,17 @@ public abstract class GameBoard {
     3. 'void' = it has no return type.
     4. (char[][] createdBoard) = arguments are a 2d array of characters
     */
+    /**
+     An abstract method that resets the game board. This method is implemented in a subclass to reset the game board specific to that subclass.
+     */
     abstract protected void resetGameBoard();
 
 
     public boolean boardisfull() {
+        /**
+        Checks if the game board is full, i.e., there are no more empty cells to place markers in.
+        @return true if the game board is full, false otherwise.
+        */
         int numFilled = 0;
         for (int i = 0; i < createdBoard.length; i++) {
             for (int j = 0; j < createdBoard[i].length; j++) {
@@ -48,8 +66,13 @@ public abstract class GameBoard {
         }
     }
 
-    //Method to check if there's already a marker in a position someone wants to put their marker on
     public boolean isPositionTaken(int row, int col) {
+        /**
+        This method checks if a given position on the game board is already taken by a player's marker.
+        @param row an integer representing the row position on the game board
+        @param col an integer representing the column position on the game board
+        @return true if the position is taken, false if it is available
+        */
         if (createdBoard[row][col] == ' ') {
             return false;
         }
@@ -68,6 +91,10 @@ public abstract class GameBoard {
     3. () = no input arguments.
     */
     public void displayGameBoard() {
+
+       /**
+       Displays the current state of the tic-tac-toe board on the console.
+       */
 
         for (int i = 0; i < createdBoard.length; i++) {
             String boardRow = "";

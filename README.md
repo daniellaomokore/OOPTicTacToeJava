@@ -4,7 +4,8 @@ TicTacToe Game built with Java using intermediate Object-Oriented Programming Co
 
 -OOP
 -2D Arrays
--Abstract Classes
+-Abstract Classes - to provide some implementation details that are common to different types of TicTacToe games
+-Interfaces -  to define the basic behavior of the game 
 -Encapsulation
 -Abstraction
 -Inheritance
@@ -12,3 +13,4 @@ TicTacToe Game built with Java using intermediate Object-Oriented Programming Co
 -Error Handling
 -Modular code
 -Setters,getters,constructors and class attributes
+-Doc strings
