@@ -28,7 +28,7 @@ public abstract class GameBoard {
     3. 'void' = it has no return type.
     4. (char[][] createdBoard) = arguments are a 2d array of characters
     */
-    abstract protected void resetGameBoard(char[][] createdBoard);
+    abstract protected void resetGameBoard();
 
 
     public boolean boardisfull() {

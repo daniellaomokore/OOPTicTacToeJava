@@ -22,35 +22,95 @@ public class TicTacToeGame {
         this.currentPlayer = this.player1; // set currentPlayer to player1
     }
 
+    public static TicTacToeGame gameSetUp(){
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Player 1 enter your name:");
+        String player1Name = input.nextLine();
+
+        char player1Marker;
+        while (true) {
+            System.out.println("Player 1 enter your marker (X or O):");
+            player1Marker = input.nextLine().charAt(0);
+            if (player1Marker == 'X' || player1Marker == 'O') {
+                break;
+            } else {
+                System.out.println("Invalid marker. Please enter either X or O.");
+            }
+        }
+
+        System.out.println("Player 2 enter your name:");
+        String player2Name = input.nextLine();
+
+        char player2Marker;
+        while (true) {
+            System.out.println("Player 2 enter your marker (X or O):");
+            player2Marker = input.nextLine().charAt(0);
+            if (player2Marker == 'X' || player2Marker == 'O') {
+                if (player2Marker == player1Marker) {
+                    System.out.println("Invalid marker. Player 1 already has that marker. Please choose a different marker.");
+                } else {
+                    break;
+                }
+            } else {
+                System.out.println("Invalid marker. Please enter either X or O.");
+            }
+        }
+
+        TicTacToeGame currentGame = new TicTacToeGame(player1Name,player1Marker,player2Name,player2Marker);  // create an object of the 'TicTacToeGame' class to call its methods
+
+        System.out.println("Player 1");
+        currentGame.player1.displayUserInfo();
+
+        System.out.println("Player 2");
+        currentGame.player2.displayUserInfo();
+
+        return currentGame;
+    }
+
 
     /*
     1. 'public' = The function can be accessed from any class.
     2. 'void' = it has no return type.
     3. () = no input arguments.
     */
-    public String playGame(){
-        while (!isGameOver()){
-            // Create an object of the TicTacToeBoard
-
+    public void playGame() {
+        while (!isGameOver()) {
             makeMove();
             myTicTacToeBoard.displayGameBoard();
         }
 
         char winnerChar = myTicTacToeBoard.isThereAWinner();
-        String winnerName;
+        String winnerName = null;
 
         if (player1.getMarker() == winnerChar) {
             winnerName = player1.getName();
-        }else if (player2.getMarker() == winnerChar) {
+        } else if (player2.getMarker() == winnerChar) {
             winnerName = player2.getName();
-        }else {
-            return "No winner this time :(";
+        } else {
+            System.out.println("No winner this time :(");
         }
-        return ("The Winner is " + winnerName + "!!!");
+        System.out.println("The Winner is " + winnerName + "!!!");
+        System.out.println("Would you like to play again? (y/n)");
+        String answer = input.nextLine();
+
+        while (!answer.equals("y") && !answer.equals("n")) {
+            System.out.println("Invalid input, please try again.");
+            answer = input.nextLine();
+        }
+
+        if (answer.equals("n")) {
+            System.out.println("Okay, See ya later!");
+            System.exit(0); // exits the program with a status code of 0 (success)
+        } else {
+            System.out.println("Starting a new game...");
+            myTicTacToeBoard.resetGameBoard();
+            playGame();
+
+        }
+
 
     }
-
-    //Method to play game
 
 
     public User getCurrentPlayer(){
@@ -99,51 +159,11 @@ public class TicTacToeGame {
         return false;
     }
 
-    // Method to check if there is a winner
-    //call this after a move is placed
 
-
-
-
-        //Method to reset board-this is called from another func
 
 
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-
-
-        System.out.println("Player 1 enter your name:");
-        String player1Name = input.nextLine();
-        System.out.println("Player 1 enter your marker:");
-        char player1Marker = input.next().charAt(0);
-
-        // Consume the newline character left by next()
-        input.nextLine();
-
-        System.out.println("Player 2 enter your name:");
-        String player2Name = input.nextLine();
-        System.out.println("Player 2 enter your marker:");
-        char player2Marker = input.next().charAt(0);
-
-        /* validate user input
-        if (marker != 'X' && marker != 'O') {
-            System.out.println("Invalid marker. Please enter either X or O.");
-        */
-
-
-        TicTacToeGame currentGame = new TicTacToeGame(player1Name,player1Marker,player2Name,player2Marker);  // create an object of the 'TicTacToeGame' class to call its methods
-
-        System.out.println("Player 1");
-        currentGame.player1.displayUserInfo();
-
-        System.out.println("Player 2");
-        currentGame.player2.displayUserInfo();
-
-
-        System.out.println(currentGame.playGame());
-
-
-
+        gameSetUp().playGame();
 
     }
 
