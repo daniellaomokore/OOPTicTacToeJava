@@ -50,16 +50,16 @@ public abstract class GameBoard implements Board {
         Checks if the game board is full, i.e., there are no more empty cells to place markers in.
         @return true if the game board is full, false otherwise.
         */
-        int numFilled = 0;
+        int cellsFilled = 0;
         for (int i = 0; i < createdBoard.length; i++) {
             for (int j = 0; j < createdBoard[i].length; j++) {
                 if (createdBoard[i][j] != defaultGameValue) {
-                    numFilled++;
+                    cellsFilled ++;
                 }
             }
         }
         int numCells = createdBoard.length * createdBoard[0].length;
-        if (numFilled != numCells) {
+        if (cellsFilled != numCells) {
             return false;
         } else {
             return true;
@@ -97,17 +97,17 @@ public abstract class GameBoard implements Board {
        */
 
         for (int i = 0; i < createdBoard.length; i++) {
-            String boardRow = "";
-            String rowSep = "";
+            String colSeparator = "";
+            String rowSeparator = "";
             for (int j = 0; j < createdBoard[i].length; j++) {
-                boardRow = boardRow + "|" + createdBoard[i][j] + "|";
-                rowSep += "---";
+                colSeparator = colSeparator + "|" + createdBoard[i][j] + "|";
+                rowSeparator += "---";
             }
             if (i == 0) {
-                System.out.println(rowSep);
+                System.out.println(rowSeparator);
             }
-            System.out.println(boardRow);
-            System.out.println(rowSep);
+            System.out.println(colSeparator);
+            System.out.println(rowSeparator);
         }
     }
 
