@@ -45,7 +45,7 @@ public abstract class GameBoard implements Board {
     abstract protected void resetGameBoard();
 
 
-    public boolean boardisfull() {
+    public boolean isBoardFull() {
         /**
         Checks if the game board is full, i.e., there are no more empty cells to place markers in.
         @return true if the game board is full, false otherwise.
