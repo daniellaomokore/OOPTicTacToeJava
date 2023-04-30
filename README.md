@@ -1,6 +1,6 @@
 # OOPTicTacToeJava
  
-🚀<i>TicTacToe Game built with Java using intermediate Object-Oriented Programming Concepts,data structures and best practises.
+🚀<i>TicTacToe Game built with Java using intermediate Object-Oriented Programming Concepts, data structures and clean code principles.
 
 
 ✨<b>Features:</b>
