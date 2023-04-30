@@ -8,7 +8,7 @@ public interface Board {
      * if a position on the board is already taken.
      */
     void displayGameBoard();
-    boolean boardisfull();
+    boolean isBoardFull();
     boolean isPositionTaken(int row, int col);
 
 }
