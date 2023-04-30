@@ -188,7 +188,7 @@ public class TicTacToeGame {
          *
          * @return true if the game is over, false otherwise
          */
-        if (myTicTacToeBoard.boardisfull() || myTicTacToeBoard.isThereAWinner() !='N'){
+        if (myTicTacToeBoard.isBoardFull() || myTicTacToeBoard.isThereAWinner() !='N'){
             return true;
         }
         return false;
