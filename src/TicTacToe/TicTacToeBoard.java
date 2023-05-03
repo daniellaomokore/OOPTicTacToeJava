@@ -57,7 +57,7 @@ public class  TicTacToeBoard  extends GameBoard {
         return true;
     }
 
-    public char isThereAWinner() {
+    protected char isThereAWinner() {
         /**
         Determines if there is a winner on the current game board by checking each row, column, and diagonal for matching markers.
         @return The marker of the winning player ('X' or 'O'), or 'N' if there is no winner.

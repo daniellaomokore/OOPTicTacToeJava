@@ -1,4 +1,8 @@
+// Interface : A contract that specifies the capabilities that a class should provide
+
 package TicTacToe;
+
+
 
 // Board interface
 public interface Board {

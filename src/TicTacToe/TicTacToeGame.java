@@ -6,29 +6,27 @@ import java.util.Scanner;
 public class TicTacToeGame {
     Scanner input = new Scanner(System.in);
 
-
-    protected TicTacToeBoard myTicTacToeBoard; // create an instance of the 'TicTacToeBoard' Class.
-    private final User player1; // private final is used to declare a constant field that can only be set once, either in the constructor or during initialization.
-    private final User player2;
+    private final TicTacToeBoard myTicTacToeBoard; // create an instance of the 'TicTacToeBoard' Class.// private final is used to declare a constant field that can only be set once, either in the constructor or during initialization.
+    private User player1;
+    private User player2;
     private User currentPlayer;
 
 
 
 
-    public TicTacToeGame(String player1Name, char player1Marker, String player2Name, char player2Marker){
+    public TicTacToeGame(){
         /**
          * Constructs a new TicTacToeGame object with the given player names and markers.
          * Initializes the game board with a new instance of TicTacToeBoard, and initializes
          * player1 and player2 with new instances of User with the inputted names and markers.
          * Sets the current player to player1.
          */
-        this.myTicTacToeBoard = new TicTacToeBoard(); // initialize myTicTacToeBoard with a new instance of TicTacToeBoard
-        this.player1 = new User(player1Name, player1Marker); // initialize player1 with a new instance of User with inputted name and marker
-        this.player2 = new User(player2Name, player2Marker); // initialize player2 with a new instance of User with inputted name and marker
-        this.currentPlayer = this.player1; // set currentPlayer to player1
+
+        gameSetUp();
+        myTicTacToeBoard = new TicTacToeBoard(); // initialize myTicTacToeBoard with a new instance of TicTacToeBoard
     }
 
-    public static TicTacToeGame gameSetUp(){
+    private void gameSetUp(){
         /**
          * Prompts the user to enter the name and marker of two players, and creates a new TicTacToeGame object with the given player information.
          *
@@ -68,15 +66,16 @@ public class TicTacToeGame {
             }
         }
 
-        TicTacToeGame currentGame = new TicTacToeGame(player1Name,player1Marker,player2Name,player2Marker);  // create an object of the 'TicTacToeGame' class to call its methods
+        player1 = new User(player1Name, player1Marker); // initialize player1 with a new instance of User with inputted name and marker
+        player2 = new User(player2Name, player2Marker); // initialize player2 with a new instance of User with inputted name and marker
+        currentPlayer = player1; // set currentPlayer to player1
 
         System.out.println("Player 1");
-        currentGame.player1.displayUserInfo();
+        player1.displayUserInfo();
 
         System.out.println("Player 2");
-        currentGame.player2.displayUserInfo();
+        player2.displayUserInfo();
 
-        return currentGame;
     }
 
 
@@ -130,7 +129,7 @@ public class TicTacToeGame {
     }
 
 
-    public User getCurrentPlayer(){
+    private User getCurrentPlayer(){
         /**
          * Returns the current player who is playing the game.
          *
@@ -140,7 +139,7 @@ public class TicTacToeGame {
         }
 
     //Method to switch to the next player
-    public void switchPlayer(){
+    private void switchPlayer(){
         /**
          * Switches the current player to the other player.
          */
@@ -152,7 +151,7 @@ public class TicTacToeGame {
         }
     }
 
-    public String makeMove() {
+    private String makeMove() {
         /**
          * Prompts the current player to select a location on the game board to place their marker.
          * Returns a message indicating whether the move was successful.
@@ -182,7 +181,7 @@ public class TicTacToeGame {
     }
 
     //Method to check if board is full/is game over -this is called from another func
-    public boolean isGameOver(){
+    private boolean isGameOver(){
         /**
          * Checks if the TicTacToe game is over by verifying if the board is full or if there is a winner.
          *
@@ -198,7 +197,6 @@ public class TicTacToeGame {
 
 
     public static void main(String[] args) {
-        gameSetUp().playGame();
 
     }
 
