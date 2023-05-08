@@ -7,10 +7,9 @@ public class TicTacToeGame {
     Scanner input = new Scanner(System.in);
 
     private final TicTacToeBoard myTicTacToeBoard; // create an instance of the 'TicTacToeBoard' Class.// private final is used to declare a constant field that can only be set once, either in the constructor or during initialization.
-    private User player1;
-    private User player2;
+    private final User player1;
+    private final User player2;
     private User currentPlayer;
-
 
 
 
@@ -22,61 +21,64 @@ public class TicTacToeGame {
          * Sets the current player to player1.
          */
 
-        gameSetUp();
         myTicTacToeBoard = new TicTacToeBoard(); // initialize myTicTacToeBoard with a new instance of TicTacToeBoard
+        player1 = getPlayer1Info();
+        player2 = getPlayer2Info();
+        currentPlayer = player1;
     }
 
-    private void gameSetUp(){
+
+    private User getPlayerInfo(int playerNumber, char markerAlreadyTaken) {
         /**
-         * Prompts the user to enter the name and marker of two players, and creates a new TicTacToeGame object with the given player information.
+         * Prompts the user to enter the name and marker of a player, and returns a new User object with the entered information.
          *
-         * @return a TicTacToeGame object with the player information entered by the user.
+         * @param playerNumber the number of the player being prompted (1 or 2)
+         * @param playerMarkerTaken the marker that has already been taken by the other player
+         * @return a User object with the player information entered by the user.
          */
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Player 1 enter your name:");
-        String player1Name = input.nextLine();
+        System.out.println("Enter player " + playerNumber + "'s name:");
+        String playerName = input.nextLine();
 
-        char player1Marker;
+        char playerMarker;
         while (true) {
-            System.out.println("Player 1 enter your marker (X or O):");
-            player1Marker = input.nextLine().charAt(0);
-            if (player1Marker == 'X' || player1Marker == 'O') {
-                break;
-            } else {
-                System.out.println("Invalid marker. Please enter either X or O.");
-            }
-        }
-
-        System.out.println("Player 2 enter your name:");
-        String player2Name = input.nextLine();
-
-        char player2Marker;
-        while (true) {
-            System.out.println("Player 2 enter your marker (X or O):");
-            player2Marker = input.nextLine().charAt(0);
-            if (player2Marker == 'X' || player2Marker == 'O') {
-                if (player2Marker == player1Marker) {
-                    System.out.println("Invalid marker. Player 1 already has that marker. Please choose a different marker.");
-                } else {
+            System.out.println("Enter player " + playerNumber + "'s marker (X or O):");
+            playerMarker = input.nextLine().charAt(0);
+            if (playerMarker == 'X' || playerMarker == 'O') {
+                if (playerMarker != markerAlreadyTaken) {
                     break;
+                } else {
+                    System.out.println("Invalid marker. Player " + playerNumber + " already has that marker. Please choose a different marker.");
                 }
             } else {
                 System.out.println("Invalid marker. Please enter either X or O.");
             }
         }
 
-        player1 = new User(player1Name, player1Marker); // initialize player1 with a new instance of User with inputted name and marker
-        player2 = new User(player2Name, player2Marker); // initialize player2 with a new instance of User with inputted name and marker
-        currentPlayer = player1; // set currentPlayer to player1
-
-        System.out.println("Player 1");
-        player1.displayUserInfo();
-
-        System.out.println("Player 2");
-        player2.displayUserInfo();
-
+        return new User(playerName, playerMarker);
     }
+
+    private User getPlayer1Info() {
+        /**
+         * Prompts the user to enter the name and marker of the first player, and returns a new User object with the entered information.
+         *
+         * @return a User object with the player information entered by the user.
+         */
+        return getPlayerInfo(1, ' ');
+    }
+
+    private User getPlayer2Info() {
+        /**
+         * Prompts the user to enter the name and marker of the second player, and returns a new User object with the entered information.
+         *
+         * @param player1 the first player, used to ensure that player 2's marker is different
+         * @return a User object with the player information entered by the user.
+         */
+        return getPlayerInfo(2, player1.getMarker());
+    }
+
+
 
 
     /*
@@ -144,10 +146,10 @@ public class TicTacToeGame {
          * Switches the current player to the other player.
          */
         if(getCurrentPlayer()==player1){
-            this.currentPlayer=player2;
+            currentPlayer=player2;
         }
         else if(getCurrentPlayer()==player2){
-            this.currentPlayer=player1;
+            currentPlayer=player1;
         }
     }
 
